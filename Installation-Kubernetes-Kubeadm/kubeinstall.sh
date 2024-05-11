@@ -24,5 +24,5 @@ EOF"
     echo "Set SystemdCGroup on $node"
     ssh $node "sed -e 's/SystemdCgroup = false/SystemdCgroup = true/g' -i /etc/containerd/config.toml && systemctl restart containerd"
     echo "Install on $node"
-    ssh $node "apt install apt-transport-https ca-certificates curl -y; curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg; echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list; apt-get update -y; apt-get install -y kubelet=1.28.4-1.1 kubeadm=1.28.4-1.1 kubectl=1.28.4-1.1; apt-mark hold kubelet kubeadm kubectl"
+    ssh $node "apt install apt-transport-https ca-certificates curl -y; curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg; echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list; apt-get update -y; apt-get install -y kubelet kubeadm kubectl; apt-mark hold kubelet kubeadm kubectl"
 done
