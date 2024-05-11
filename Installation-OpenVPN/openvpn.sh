@@ -1,3 +1,4 @@
+#!/bin/bash
 if readlink /proc/$$/exe | grep -q "dash"; then
 	echo 'This installer needs to be run with "bash", not "sh".'
 	exit
